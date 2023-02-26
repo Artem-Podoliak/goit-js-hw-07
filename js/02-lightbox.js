@@ -7,7 +7,6 @@ const galleryRef = document.querySelector(".gallery");
 const addGalleryItems = createGalleryItems(galleryItems);
 
 galleryRef.insertAdjacentHTML("beforeend", addGalleryItems);
-galleryRef.addEventListener("click", onGalleryItemsClick);
 
 function createGalleryItems(elements) {
   return elements
@@ -19,18 +18,10 @@ function createGalleryItems(elements) {
     .join("");
 }
 
-function onGalleryItemsClick(elements) {
-  elements.preventDefault();
-  if (!elements.target.classList.contains("gallery__image")) {
-    return;
-  }
+const options = {
+  captionsData: "alt",
+  captionPosition: "bottom",
+  captionDelay: 250,
+};
 
-  const options = {
-    captionsData: "alt",
-    captionPosition: "bottom",
-    captionDelay: 250, //Відобразити подання
-  };
-
-  const lightbox = new SimpleLightbox(".gallery a", options);
-  lightbox.on("show.simplelightbox");
-}
+const lightbox = new SimpleLightbox(".gallery a", options);
