@@ -35,10 +35,12 @@ function onGalleryItemsClick(elements) {
   );
   instance.show();
 
-  galleryRef.addEventListener("keydown", (elements) => {
+  galleryRef.addEventListener("keydown", escapeKeyPushHandler);
+
+  function escapeKeyPushHandler(elements) {
     if (elements.key === "Escape") {
       instance.close();
+      galleryRef.removeEventListener("keydown", escapeKeyPushHandler);
     }
-    galleryRef.removeEventListener('keydown')
-  });
+  }
 }
